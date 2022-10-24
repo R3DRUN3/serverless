@@ -1,0 +1,19 @@
+org: r3drun3
+app: first-function
+
+service: first-function
+
+provider:
+  name: aws
+  runtime: python3.8
+  versionFunctions: false
+  memorySize: 128
+  region: eu-central-1
+
+functions:
+  show_data:
+    handler: handler.show_data
+    events:
+      - http:
+          path: echo/data
+          method: get
