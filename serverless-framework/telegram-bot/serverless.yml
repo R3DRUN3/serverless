@@ -1,0 +1,21 @@
+service: my-telegram-bot
+
+provider:
+  name: aws
+  profile: default
+  runtime: python3.9
+  stage: dev
+  region: eu-central-1
+  environment:
+    TELEGRAM_TOKEN: ${file(./serverless.env.yml):TELEGRAM_TOKEN, ''}
+
+
+
+functions:
+  post:
+    handler: handler.hello
+    events:
+      - http:
+          path: chat
+          method: post
+          cors: true

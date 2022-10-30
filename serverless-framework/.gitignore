@@ -40,3 +40,7 @@ admin.env
 .env
 _meta
 .serverless
+
+# custom serverless stuff
+vendored
+serverless.env.yml
