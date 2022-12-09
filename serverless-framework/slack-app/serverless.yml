@@ -1,0 +1,20 @@
+service: my-slack-app
+
+provider:
+  name: aws
+  profile: default
+  runtime: python3.9
+  stage: dev
+  region: eu-central-1
+  environment:
+    SLACK_TOKEN: ${file(./serverless.env.yml):SLACK_TOKEN, ''}
+    SLACK_CHANNEL: ${file(./serverless.env.yml):SLACK_CHANNEL, ''}
+
+functions:
+  post:
+    handler: handler.hello
+    events:
+      - http:
+          path: chat
+          method: post
+          cors: true
